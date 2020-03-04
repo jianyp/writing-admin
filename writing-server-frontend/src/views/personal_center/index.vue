@@ -82,10 +82,10 @@ export default {
 </script>
 <style lang="less" scoped>
   .conter_main_body{ position: relative;
-    .header_left{ margin-left: 296px; }
+    .header_left{ margin-left: 270px; }
     .header_left2{ margin-left: 80px; }
     .main_left_nav{ float: left; }
-    .nav_left{ width: 296px; }
+    .nav_left{ width: 270px; }
     .nav_left2{ width: 80px; }
   }
 </style>

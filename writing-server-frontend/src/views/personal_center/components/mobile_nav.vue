@@ -79,7 +79,7 @@ export default {
     .nav_list{ margin-bottom: 8px; font-size: 16px; padding: 18px 21px; color:#95A0AA; box-sizing: border-box; cursor: pointer;
       .iconWords{ width: 24px; height: 24px; vertical-align: middle; }
     }
-    .checked{ background:#7dd9ff; color: #fff; }
+    .checked{ background:rgba(255, 255, 255, .2); color: #fff; }
     .nav_btn{ padding-left: 50%; margin-left: -90px;
       .btn_style{ width: 180px; border-radius: 4px; border: 1px solid #1BB8FA; color: #fff; height: 40px; line-height: 40px; 
         text-align: center; cursor: pointer; 

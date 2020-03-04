@@ -37,7 +37,7 @@
         LOGO
       </div>
       <div class="creat_new2">
-        <el-button type="primary" title="New Order"> + </el-button>
+        <el-button type="primary" title="New Order"><i class="el-icon-plus"></i></el-button>
       </div>
       <div class="nav_list2" 
         v-for="(na,index) in navArr" :key="na.id" 
@@ -56,9 +56,9 @@
           </svg>
         </span>
       </div>
-      <div class="nav_open" @click="openNav">
+      <!-- <div class="nav_open" @click="openNav">
        <i class="el-icon-d-arrow-right"></i>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
@@ -73,25 +73,34 @@ export default {
     return{
       active:0,
       navArr:[
-        {navName:'Orders',icon:'#iconic_orders',newOrder:'3'},
-        {navName:'My mriters',icon:'#iconic_mriters',newOrder:''},
-        {navName:'Member',icon:'#iconic_member',newOrder:''},
-        {navName:'Personal Center',icon:'#iconic_personal',newOrder:''},
-        {navName:'About platform',icon:'#iconic_platform',newOrder:''},
+        {navName:'Orders',icon:'#iconic_orders',newOrder:'3',url:"orders"},
+        {navName:'My mriters',icon:'#iconic_mriters',newOrder:'',url:"writer"},
+        {navName:'Member',icon:'#iconic_member',newOrder:'',url:"member"},
+        {navName:'Personal Center',icon:'#iconic_personal',newOrder:'',url:"profile"},
+        {navName:'About platform',icon:'#iconic_platform',newOrder:'',url:"about"},
       ]
     }
   },
   mounted(){
     let vm = this
+    vm.isActive();
   },
   methods:{
     checkedList(item,i){
       let vm = this
       vm.active = i
+      this.$router.push({path:item.url})
     },
     //展开导航栏
     openNav(){
       this.$emit('openNav',true)
+    },
+    isActive(){
+      this.navArr.forEach((ele,i) => {
+        if(this.$route.path.indexOf(ele.url)>0){
+          this.active = i;
+        }
+      });
     }
   },
 }
@@ -103,11 +112,10 @@ export default {
       button{ width: 180px; }
     }
     .creat_new2{ text-align: center; padding: 16px 0 8px;  margin-bottom: 32px;
-      button{ width: 60px; }
     }
     .nav_btn{ position: fixed; left: 58px; right: 58px; bottom: 96px; 
       .btn_style{ width: 180px; border-radius: 4px; border: 1px solid #1BB8FA; color: #fff; height: 40px; line-height: 40px; 
-        text-align: center; cursor: pointer;
+        text-align: center; cursor: pointer;background:rgba(27, 184, 250, 0.1);
         &:nth-child(1){ margin-bottom: 14px; }
         &:hover{ background:#1BB8FA; }
       }
@@ -118,7 +126,7 @@ export default {
     .nav_list2{ margin-bottom: 8px; padding: 18px 21px;box-sizing: border-box; cursor: pointer; text-align: center;
       .iconWords{ width: 24px; height: 24px; vertical-align: middle;}
     }
-    .checked{ background:#7dd9ff; color: #fff; }
+    .checked{ background:rgba(255,255,255,.2);color: #fff; }
     .nav_open{ border: 1px solid #f1f1f1 ; color: #f1f1f1; cursor: pointer; border-radius: 4px; height: 30px; line-height: 30px;
       width: 30px; margin-left: 25px; text-align: center; margin-top:8px;
       &:hover{ border-color: #5CB9FF;color: #5CB9FF; }

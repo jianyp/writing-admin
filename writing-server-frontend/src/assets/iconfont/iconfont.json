@@ -6,46 +6,39 @@
   "description": "",
   "glyphs": [
     {
-      "icon_id": "12026571",
-      "name": "ic_clock",
-      "font_class": "ic_clock",
-      "unicode": "e623",
-      "unicode_decimal": 58915
+      "icon_id": "13087980",
+      "name": "ic_close",
+      "font_class": "ic_close",
+      "unicode": "e633",
+      "unicode_decimal": 58931
     },
     {
-      "icon_id": "12026572",
-      "name": "ic_book",
-      "font_class": "ic_book",
-      "unicode": "e624",
-      "unicode_decimal": 58916
+      "icon_id": "12746829",
+      "name": "ic_check",
+      "font_class": "ic_check",
+      "unicode": "e631",
+      "unicode_decimal": 58929
     },
     {
-      "icon_id": "12026573",
-      "name": "ic_business",
-      "font_class": "ic_business",
-      "unicode": "e625",
-      "unicode_decimal": 58917
+      "icon_id": "12382588",
+      "name": "ic_upload",
+      "font_class": "ic_upload",
+      "unicode": "e630",
+      "unicode_decimal": 58928
     },
     {
-      "icon_id": "12026574",
-      "name": "ic_subject",
-      "font_class": "ic_subject",
-      "unicode": "e626",
-      "unicode_decimal": 58918
+      "icon_id": "12382580",
+      "name": "ic_files",
+      "font_class": "ic_files",
+      "unicode": "e62e",
+      "unicode_decimal": 58926
     },
     {
-      "icon_id": "12026575",
-      "name": "ic_mathematics",
-      "font_class": "ic_mathematics",
-      "unicode": "e627",
-      "unicode_decimal": 58919
-    },
-    {
-      "icon_id": "12026678",
-      "name": "ic_consultation",
-      "font_class": "ic_consultation",
-      "unicode": "e628",
-      "unicode_decimal": 58920
+      "icon_id": "12382581",
+      "name": "ic_heart",
+      "font_class": "ic_heart",
+      "unicode": "e62f",
+      "unicode_decimal": 58927
     },
     {
       "icon_id": "12181456",
@@ -83,25 +76,46 @@
       "unicode_decimal": 58925
     },
     {
-      "icon_id": "12382580",
-      "name": "ic_files",
-      "font_class": "ic_files",
-      "unicode": "e62e",
-      "unicode_decimal": 58926
+      "icon_id": "12026678",
+      "name": "ic_consultation",
+      "font_class": "ic_consultation",
+      "unicode": "e628",
+      "unicode_decimal": 58920
     },
     {
-      "icon_id": "12382581",
-      "name": "ic_heart",
-      "font_class": "ic_heart",
-      "unicode": "e62f",
-      "unicode_decimal": 58927
+      "icon_id": "12026571",
+      "name": "ic_clock",
+      "font_class": "ic_clock",
+      "unicode": "e623",
+      "unicode_decimal": 58915
     },
     {
-      "icon_id": "12382588",
-      "name": "ic_upload",
-      "font_class": "ic_upload",
-      "unicode": "e630",
-      "unicode_decimal": 58928
+      "icon_id": "12026572",
+      "name": "ic_book",
+      "font_class": "ic_book",
+      "unicode": "e624",
+      "unicode_decimal": 58916
+    },
+    {
+      "icon_id": "12026573",
+      "name": "ic_business",
+      "font_class": "ic_business",
+      "unicode": "e625",
+      "unicode_decimal": 58917
+    },
+    {
+      "icon_id": "12026574",
+      "name": "ic_subject",
+      "font_class": "ic_subject",
+      "unicode": "e626",
+      "unicode_decimal": 58918
+    },
+    {
+      "icon_id": "12026575",
+      "name": "ic_mathematics",
+      "font_class": "ic_mathematics",
+      "unicode": "e627",
+      "unicode_decimal": 58919
     }
   ]
 }

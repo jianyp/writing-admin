@@ -78,35 +78,36 @@ export default {
       let params = {};
       params.username = this.emailInp;
       params.password = this.pswInp;
-      if (this.emailInp && this.pswInp) {
-        this.$axios
-          .post("/login", params)
-          .then(res => {
-            if (res.data.code === 200) {
-              vm.tips = false;
-              localStorage.setItem("userMsg",JSON.stringify(params));
-              localStorage.setItem("userInfo", JSON.stringify(res.data.user));
-              localStorage.setItem("token", res.data.token);
-              this.$router.push({ path: "/personal_center" });
-            } else {
-              vm.tips = true;
-            }
-          })
-          .catch(err => {
-            console.log(err)
-            if (err) {
-              // this.$message.error('Oops ! Something went wrong and it was probably our fault.Please try again later or report the problem to us');
-              this.$message({
-                duration: 6000,
-                type: "error",
-                message:
-                  "Oops ! Something went wrong and it was probably our fault.Please try again later or report the problem to us"
-              });
-            }
-          });
-      }else{
-        vm.tips = true;
-      }
+      // if (this.emailInp && this.pswInp) {
+      //   this.$axios
+      //     .post("/login", params)
+      //     .then(res => {
+      //       if (res.data.code === 200) {
+      //         vm.tips = false;
+      //         localStorage.setItem("userMsg",JSON.stringify(params));
+      //         localStorage.setItem("userInfo", JSON.stringify(res.data.user));
+      //         localStorage.setItem("token", res.data.token);
+      //         this.$router.push({ path: "/personal_center" });
+      //       } else {
+      //         vm.tips = true;
+      //       }
+      //     })
+      //     .catch(err => {
+      //       console.log(err)
+      //       if (err) {
+      //         // this.$message.error('Oops ! Something went wrong and it was probably our fault.Please try again later or report the problem to us');
+      //         this.$message({
+      //           duration: 6000,
+      //           type: "error",
+      //           message:
+      //             "Oops ! Something went wrong and it was probably our fault.Please try again later or report the problem to us"
+      //         });
+      //       }
+      //     });
+      // }else{
+      //   vm.tips = true;
+      // }
+      this.$router.push({ path: "/personal_center" });
     },
     rememberUser() {
       if (localStorage.getItem("rememberUser")) {

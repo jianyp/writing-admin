@@ -5,10 +5,10 @@
         <span>Orders/</span>Details
       </div>
       <div class="line_dropdown">
-        <el-dropdown trigger="click" class="dropdown_select">
+        <el-dropdown trigger="click" class="dropdown_select" :class="actionFlag?'active':''" @visible-change="actionOpen">
           <span class="el-dropdown-link">
             Actions
-            <i class="el-icon-arrow-down el-icon--right"></i>
+            <i class="el-icon--right" :class="actionFlag?'el-icon-caret-top':'el-icon-caret-bottom '"></i>
           </span>
           <el-dropdown-menu slot="dropdown">
             <el-dropdown-item icon="el-icon-picture">Picture</el-dropdown-item>
@@ -45,7 +45,6 @@
         <!-- Details -->
         <div class="details" v-if="activeName == 'first'">
           <el-row :gutter="40">
-            
             <el-col :xs="24" :sm="24" :md="12" :lg="12">
               <div class="details-border">
                 <el-collapse v-model="activeNames" accordion>
@@ -187,7 +186,29 @@
               <div class="divider"></div>
               <span>Received Files ({{fileCount || 0}})</span>
             </div>
-            <el-table v-if="fileList&&fileList.length>0"></el-table>
+            <el-table v-if="fileTable && fileTable.length>0" :data="fileTable">
+              <el-table-column
+                prop="filename"
+                label="File"
+                >
+                <template slot-scope="scope">
+                  <span style="font-weight:bold">{{scope.row.filename}}</span>
+                </template>
+              </el-table-column>
+              <el-table-column
+                prop="date"
+                label="Date">
+              </el-table-column>
+              <el-table-column
+                prop="filesize"
+                label="FileSize"
+                >
+              </el-table-column>
+              <el-table-column
+                label="Action">
+                <el-button type="primary" plain>DownLoad</el-button>
+              </el-table-column>
+            </el-table>
             <div v-else class="re-file-empty"></div>
           </div>
           <div class="my-files">
@@ -195,9 +216,10 @@
               <div class="divider"></div>
               <span>My Files ({{fileCount || 0}})</span>
               <el-upload
-                action="/api"
+                :action="upLoad()"
                 :on-change="handleChange"
                 multiple
+                :on-success="upLoadSuccess"
                 :show-file-list="flag"
                 :file-list="fileList"
               >
@@ -206,7 +228,7 @@
                 </el-button>
               </el-upload>
             </div>
-            <el-table v-if="fileList&&fileList.length>0"></el-table>
+            <el-table v-if="myFileTable&&myFileTable.length>0"></el-table>
             <div v-else class="my-file-empty"></div>
           </div>
         </div>
@@ -227,7 +249,14 @@ export default {
       activeName: "first",
       activeNames: ["1"],
       fileList: [],
+      fileTable:[
+        {filename:"immigration.docx",filesize:"23KB",date:"Jul 26,2019 01:00PM"},
+        {filename:"immigration.docx",filesize:"23KB",date:"Jul 26,2019 01:00PM"}
+      ],
+      myFileTable:[],
+      fileCount:null,
       flag: false,
+      actionFlag:false,
       msgList: [
         {
           date: "July 22,2019",
@@ -261,14 +290,35 @@ export default {
       ]
     };
   },
-  mounted() {},
+  mounted() {
+    this.getFileList()
+  },
   methods: {
     handleClick(tab, e) {
       let vm = this;
     },
     handleChange(file, fileList) {
-      console.log(file);
-      console.log(fileList);
+     
+    },
+    upLoadSuccess(){
+      this.getFileList()
+    },
+    upLoad(){
+      return 'http://localhost:3000/uploadfile'
+    },
+    getFileList(){
+      this.$axios.get('/file').then(res=>{
+        let data = res.data.data
+        this.fileTable = data
+        this.fileCount = data.length
+        console.log(data)
+
+      }).catch(err=>{
+
+      })
+    },
+    actionOpen(flag){
+      this.actionFlag = flag;
     }
   }
 };
@@ -288,15 +338,16 @@ export default {
   .line_dropdown {
     float: right;
     .dropdown_select {
-      border: 1px solid #92ddfc;
+      border: 1px solid #DCDFE6;
       height: 40px;
       line-height: 40px;
       width: 100px;
       text-align: center;
-      background: #e8f8fe;
-      color: #333;
+      color: #666;
       border-radius: 4px;
+      transition: .3s;
     }
+    .dropdown_select.active{color:#fff;background: #379FEE}
   }
   &::after {
     content: "";
@@ -325,7 +376,6 @@ export default {
   .details_row {
     padding: 8px;
     box-sizing: border-box;
-    background: rgba(0, 0, 0, 0.05);
     .details_label {
       color: #99a9bf;
     }
@@ -372,7 +422,7 @@ export default {
       // border: 1px solid rgba(27, 184, 250, 0.5) #d6f2fe;
       border: 1px solid #d6f2fe;
       border-radius: 4px;
-      padding: 14px 20px;
+      padding: 14px 16px;
       margin-bottom: 10px;
       white-space: nowrap;
       overflow: hidden;
@@ -381,7 +431,7 @@ export default {
       }
       &>span:nth-child(2){
         float: right;
-        margin-left: 20px;
+        margin-left: 8px;
       }
       &>span:nth-child(3){
         float: right;
@@ -407,9 +457,13 @@ export default {
       margin: 0 20px;
       font-size: 18px;
     }
+    .msg-item + .msg-item{
+      background: #E8F8FE;
+    }
     .msg-item {
       display: flex;
       padding: 20px;
+      margin: 5px 0;
       .messages-head {
         margin-right: 20px;
       }
@@ -562,4 +616,6 @@ export default {
   border-radius: 10px;
   background: #fff;
 }
+
+
 </style>

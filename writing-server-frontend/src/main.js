@@ -11,6 +11,8 @@ Vue.use(VueResource)
 import _ from 'lodash'
 import router_list from './router'
 
+// 公共样式
+import '../static/common.css'
 
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
@@ -30,6 +32,14 @@ import './global_component.js'
 // 引入axios
 import axios from 'axios';
 Vue.prototype.$axios = axios;
+
+//引入nprogress
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
+
+// 配置nprogress
+NProgress.inc(0.2)
+NProgress.configure({ easing: 'ease', speed: 500, showSpinner: false })
 
 // 环境的切换
 // 全局请求基础地址
@@ -289,17 +299,23 @@ const router = new VueRouter({
   routes: router_list,
 })
 router.beforeEach((to,from,next)=>{
-  if(to.meta.auth){
-   if(localStorage.getItem("userInfo")){
-     next()
-   }else{
-     router.push({path:'/login'})
-   }
-  }else{
-    next() //放行
-  }
+  // if(to.meta.auth){
+  //  if(localStorage.getItem("userInfo")){
+  //   NProgress.start()
+  //   next()
+  //  }else{
+  //    router.push({path:'/login'})
+  //  }
+  // }else{
+  //   NProgress.start()
+  //   next() //放行
+  // }
+  NProgress.start();
+  next();
  })
-
+router.afterEach(() => {
+  NProgress.done()
+})
 
 const store = new Vuex.Store({
   state: {

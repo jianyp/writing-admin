@@ -1,0 +1,9 @@
+/* element tabs及分页样式 */
+.el-pagination{white-space:pre-wrap !important}
+.el-tabs__item.is-active{color: #6DB33F !important}
+.el-tabs__item{font-weight: bold !important;font-size: 16px !important}
+.el-tabs__item:hover{color: #6DB33F !important}
+.el-tabs__active-bar{background: #6DB33F !important}
+.el-pager li.active{color:#6DB33F !important}
+.el-pager li:hover{color:#6DB33F !important}
+.el-pagination .btn-next:hover,.el-pagination .btn-prev:hover{color: #6DB33F !important}

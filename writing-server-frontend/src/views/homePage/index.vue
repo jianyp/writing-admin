@@ -22,7 +22,7 @@
           </ul>
           
           <ul class="nav navbar-nav navbar-right">
-            <li class="nav_list_tab"><span class="singBtn default-color" @click="gotoLogin">Sing In</span></li>
+            <li class="nav_list_tab"><span class="singBtn default-color" @click="gotoLogin">Sign In</span></li>
             <li class="nav_list_tab"><span class="singBtn success-color">place an order</span></li>
           </ul>
         </div><!-- /.navbar-collapse -->
@@ -75,19 +75,24 @@
         <div class="service_title">EXCELLENT SERVICE</div>
         <div class="row">
           <div class="list_info col-md-offset-1 col-md-2 col-sm-6">
-            <i class="icon iconfont iconic_subject"></i>All subjects
+            <i class="icon iconfont iconic_subject"></i>
+            <p>All subjects</p>
           </div>
           <div class="list_info col-md-2 col-sm-6">
-            <i class="icon iconfont iconic_business"></i>Business
+            <i class="icon iconfont iconic_business"></i>
+            <p>Business</p>
           </div>
           <div class="list_info col-md-2 col-sm-6">
-            <i class="icon iconfont iconic_clock"></i>Humanities
+            <i class="icon iconfont iconic_clock"></i>
+            <p>Humanities</p>
           </div>
           <div class="list_info col-md-2 col-sm-6">
-            <i class="icon iconfont iconic_mathematics"></i>Mathematics
+            <i class="icon iconfont iconic_mathematics"></i>
+            <p>Mathematics</p>
           </div>
           <div class="list_info col-md-2 col-sm-6">
-            <i class="icon iconfont iconic_book"></i>Programming
+            <i class="icon iconfont iconic_book"></i>
+            <p>Programming</p>
           </div>
         </div>
       </div>
@@ -97,29 +102,29 @@
     </div>
     <div class="line_card">
       <div class="col-sm-6 col-md-4">
-        <div class="thumbnail" style=" height: 240px; padding: 27px;">
+        <div class="card-box" >
           <img class="card_img" src="../img/img_01.png">
           <div class="caption">
             <h4>1. Post your question</h4>
-            <p style="font-size: 10px;">Include details on what you need help with, your budget, and how much time you have.</p>
+            <p>Include details on what you need help with, your budget, and how much time you have.</p>
           </div>
         </div>
       </div>
       <div class="col-sm-6 col-md-4">
-        <div class="thumbnail" style=" height: 240px; padding: 27px;">
+        <div class="card-box">
           <img class="card_img" src="../img/img_02.png">
           <div class="caption">
             <h4>2. Select a Tutorn</h4>
-            <p style="font-size: 10px;">We recommend tutors that are perfect for your question. You choose the one you want to work with.</p>
+            <p>We recommend tutors that are perfect for your question. You choose the one you want to work with.</p>
           </div>
         </div>
       </div>
       <div class="col-sm-6 col-md-4">
-        <div class="thumbnail" style=" height: 240px; padding: 27px;">
+        <div class="card-box">
           <img class="card_img" src="../img/img_03.png">
           <div class="caption">
             <h4>3. Get help quickly</h4>
-            <p style="font-size: 10px;">Message tutors through Studypool's chat feature. Only pay at the end. Satisfaction guaranteed.</p>
+            <p>Message tutors through Studypool's chat feature. Only pay at the end. Satisfaction guaranteed.</p>
           </div>
         </div>
       </div>
@@ -145,17 +150,17 @@ show3: true
 </script>
 <style scoped>
   .writing_body{ margin-bottom: 0; position:relative; height: 100%; }
-  .writing_body .navbar{ margin-bottom: 0; }
+  .writing_body .navbar{ margin-bottom: 0; line-height: 40px;}
   .navbar-inverse{  background: #00303F; }
-  .logoName{ font-weight: 700; font-size: 18px; }
+  .logoName{ font-weight: 700; font-size: 30px;}
   .nav_list_tab{ margin: 14px 0 0 ; }
-  .allMaxWitdh{ max-width: 1240px; }
-  .nav_list{ color: #fff; margin: 0 8px;  cursor: pointer; position: relative; font-size: 12px; }
+  .allMaxWitdh{ max-width: 1280px; }
+  .nav_list{ color: #fff; margin: 0 8px;  cursor: pointer; position: relative; font-size: 16px;font-weight: bold;}
   .nav_list:hover{ color: #6DB33F; }
   .nav_active{ color: #6DB33F; }
   .nav_active::after{ content:''; display: inline-block; position: absolute; height: 2px;
      background: #6DB33F ; width: 50%; left: 25%; bottom: -4px; }
-  .singBtn{ border-radius: 4px; border: 1px solid; color: #fff; padding: 4px 8px; margin: 0 8px; cursor: pointer; font-size: 12px }
+  .singBtn{ border-radius: 4px; border: 1px solid; color: #fff; padding: 6px 16px; margin: 0 8px; cursor: pointer; font-size: 14px;font-weight: bold; }
   .default-color{ background: rgba(0,0,0,0); }
   .success-color{ background: #6DB33F; border-color: #6DB33F; }
   .banner{ position: relative; min-height: 300px; background-image: url('../img/banner01.png'); background-size:  cover;}
@@ -166,11 +171,15 @@ show3: true
   .select_line{ margin-bottom: 12px; overflow: hidden; }
   .select_css{ height: 40px; }
   .select_enter{ background: #379FEE; width: 100%; text-align: center; line-height: 40px; color: #fff; }
-  .excellen_service{ background: #F0F2F4; padding: 16px; color: #ADBBC4; font-weight: 700; }
-  .service_title{ margin-bottom: 8px; }
-  .list_info{ font-size: 16px; }
-  .list_info>i{ font-size: 24px; margin-right: 8px; }
-  .line_box{ max-width: 1240px; margin: 0 auto; height: 75px; line-height: 75px; text-align: center; font-weight: 700; font-size: 16px; color: #333333;}
+  .excellen_service{ background: #F0F2F4; padding: 16px; color: #ADBBC4;  }
+  .service_title{ margin-bottom: 8px; font-weight: 700;font-size: 20px;}
+  .list_info{ font-size: 16px;display: flex;justify-content: center; }
+  .list_info>p{margin: 0;line-height: 57px;font-weight: 700;}
+  .list_info>i{ font-size: 40px; margin-right: 8px; }
+  .line_box{ max-width: 1280px; margin: 0 auto; text-align: center; font-weight: 700; font-size: 24px; color: #333333;padding: 40px 0;}
   .line_card{  max-width: 960px; margin: 0 auto;}
-  .card_img{ width: 51px; height: 51px; }
+  .card_img{ width: 80px; height: 80px;border:1px dashed;}
+  .caption{text-align: left;margin-top: 20px;}
+  .caption>h4{font-size: 16px;font-weight: bold;}
+  .card-box{border: none;overflow: hidden;box-sizing: border-box;text-align: center;padding: 40px;box-shadow: 0px 0px 3px #999;height: 280px;}
 </style>

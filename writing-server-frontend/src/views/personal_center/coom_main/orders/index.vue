@@ -2,20 +2,20 @@
   <div class="order_main">
     <div class="line_title">
       <div class="line_breadcrumb">
-        <span>Orders/</span>Message
+        Orders
       </div>
       <div class="line_dropdown">
-        <el-dropdown trigger="click" class="dropdown_select">
+        <el-dropdown trigger="click" class="dropdown_select" :class="filterFlag?'active':''" @visible-change="filterOpen">
           <span class="el-dropdown-link">
-            Filter<i class="el-icon-arrow-down el-icon--right"></i>
+            Filter<i class="el-icon--right" :class="filterFlag?'el-icon-caret-top':'el-icon-caret-bottom '"></i>
           </span>
           <el-dropdown-menu slot="dropdown">
             <el-dropdown-item icon="el-icon-picture">Picture</el-dropdown-item>
         </el-dropdown-menu>
         </el-dropdown>
-        <el-dropdown trigger="click" class="dropdown_select">
+        <el-dropdown trigger="click" class="dropdown_select" :class="setFlag?'active':''" @visible-change="setOpen">
           <span class="el-dropdown-link">
-            Set<i class="el-icon-arrow-down el-icon--right"></i>
+            Set<i class="el-icon--right" :class="setFlag?'el-icon-caret-top':'el-icon-caret-bottom '"></i>
           </span>
           <el-dropdown-menu slot="dropdown">
             <div style="width:300px; padding: 0 16px;">
@@ -26,8 +26,8 @@
               </el-row>
               <div>
                 <el-button type="primary" size="mini" plain>Confirm</el-button>
-                <el-button type="primary" size="mini" plain>Cancel</el-button>
-                <el-button type="primary" size="mini" plain>Default</el-button>
+                <el-button size="mini" >Cancel</el-button>
+                <el-button size="mini" >Default</el-button>
               </div>
             </div>
           </el-dropdown-menu>
@@ -90,7 +90,7 @@
             :current-page.sync="pageNum"
             :page-size="pageSize"
             layout="total, sizes, prev, pager, next, jumper"
-            :total="setArr.total"
+            :total="1000"
             class="pagination_style">
           </el-pagination>
         </div>
@@ -120,7 +120,9 @@ export default {
       showTable: true,
       checked: false,
       checkeds: false,
-      loading:true,
+      filterFlag:false,
+      setFlag:false,
+      // loading:true,
       more:[
         { option:'Duplicate' },
         { option:'New orders with the same author' },
@@ -132,84 +134,84 @@ export default {
         checkArr:[
           // { checked:true , name:'Topic' , prop: 'Topic' },
           { checked:true , name:'Subject' , prop: 'subject' },
-          { checked:true , name:'Order number' , prop: 'ordernumber' },
+          { checked:true , name:'Order number' , prop: 'orderNumber' },
           { checked:true , name:'Deadline' , prop: 'deadline' },
-          { checked:true , name:'Status' , prop: 'status' },
+          { checked:true , name:'Status' , prop: 'statusType' },
           { checked:false , name:'Writer’s ID' , prop: 'writerid' },
           { checked:true , name:'Price' , prop: 'price' },
         ],
         aaData:[
-          // {
-          //   topic: "Immigrant Inflows, Native Outflows, and the are more things to describe",
-          //   subject: 'Economics',
-          //   orderNumber: '#20191205001',
-          //   deadline: '23 Jul 2018, 04 PM',
-          //   statusName: 'Waiting for payment',
-          //   statusType: 0,
-          //   price: '$450.39',
-          //   bonus:'($0.8 bonus)',
-          //   writerId:'a1a2a5s4d8wqe3',
-          //   tableName:'Topic',
-          //   more:[
-          //     { option:'Duplicate' },
-          //     { option:'New orders with the same author' },
-          //     { option:'Add writer to favorites' },
-          //     { option:'Add writer to blacklist' }
-          //   ],
-          // },
-          // {
-          //   topic: "Writer's Choice",
-          //   subject: 'Economics',
-          //   orderNumber: '#20191205001',
-          //   deadline: '23 Jul 2018, 04 PM',
-          //   statusName: 'Completed',
-          //   statusType: 1,
-          //   price: '$450.39',
-          //   bonus:'($0.8 bonus)',
-          //   writerId:'a1a2a5s4d8wqe3',
-          //   tableName:'Subject',
-          //   more:[
-          //     { option:'Duplicate' },
-          //     { option:'New orders with the same author' },
-          //     { option:'Add writer to favorites' },
-          //     { option:'Add writer to blacklist' }
-          //   ],
-          // },
-          // {
-          //   topic: "Immigrant Inflows, Native Outflows, and the...",
-          //   subject: 'Economics',
-          //   orderNumber: '#20191205001',
-          //   deadline: '23 Jul 2018, 04 PM',
-          //   statusName: 'Waiting for payment',
-          //   statusType: 0,
-          //   price: '$450.39',
-          //   bonus:'($0.8 bonus)',
-          //   writerId:'a1a2a5s4d8wqe3',
-          //   tableName:'Order number',
-          //   more:[
-          //     { option:'Duplicate' },
-          //     { option:'New orders with the same author' },
-          //     { option:'Add writer to favorites' },
-          //     { option:'Add writer to blacklist' }
-          //   ],
-          // },
-          // {
-          //   topic: "Writer's Choice",
-          //   subject: 'Economics',
-          //   orderNumber: '#20191205001',
-          //   deadline: '23 Jul 2018, 04 PM',
-          //   statusName: 'In progress',
-          //   statusType: 2,
-          //   price: '$450.39',
-          //   bonus:'($0.8 bonus)',
-          //   writerId:'a1a2a5s4d8wqe3',
-          //   more:[
-          //     { option:'Duplicate' },
-          //     { option:'New orders with the same author' },
-          //     { option:'Add writer to favorites' },
-          //     { option:'Add writer to blacklist' }
-          //   ],
-          // }
+          {
+            topic: "Immigrant Inflows, Native Outflows, and the are more things to describe",
+            subject: 'Economics',
+            orderNumber: '#20191205001',
+            deadline: '23 Jul 2018, 04 PM',
+            statusName: 'Waiting for payment',
+            statusType: 0,
+            price: '$450.39',
+            bonus:'($0.8 bonus)',
+            writerId:'a1a2a5s4d8wqe3',
+            tableName:'Topic',
+            more:[
+              { option:'Duplicate' },
+              { option:'New orders with the same author' },
+              { option:'Add writer to favorites' },
+              { option:'Add writer to blacklist' }
+            ],
+          },
+          {
+            topic: "Writer's Choice",
+            subject: 'Economics',
+            orderNumber: '#20191205001',
+            deadline: '23 Jul 2018, 04 PM',
+            statusName: 'Completed',
+            statusType: 1,
+            price: '$450.39',
+            bonus:'($0.8 bonus)',
+            writerId:'a1a2a5s4d8wqe3',
+            tableName:'Subject',
+            more:[
+              { option:'Duplicate' },
+              { option:'New orders with the same author' },
+              { option:'Add writer to favorites' },
+              { option:'Add writer to blacklist' }
+            ],
+          },
+          {
+            topic: "Immigrant Inflows, Native Outflows, and the...",
+            subject: 'Economics',
+            orderNumber: '#20191205001',
+            deadline: '23 Jul 2018, 04 PM',
+            statusName: 'Waiting for payment',
+            statusType: 0,
+            price: '$450.39',
+            bonus:'($0.8 bonus)',
+            writerId:'a1a2a5s4d8wqe3',
+            tableName:'Order number',
+            more:[
+              { option:'Duplicate' },
+              { option:'New orders with the same author' },
+              { option:'Add writer to favorites' },
+              { option:'Add writer to blacklist' }
+            ],
+          },
+          {
+            topic: "Writer's Choice",
+            subject: 'Economics',
+            orderNumber: '#20191205001',
+            deadline: '23 Jul 2018, 04 PM',
+            statusName: 'In progress',
+            statusType: 2,
+            price: '$450.39',
+            bonus:'($0.8 bonus)',
+            writerId:'a1a2a5s4d8wqe3',
+            more:[
+              { option:'Duplicate' },
+              { option:'New orders with the same author' },
+              { option:'Add writer to favorites' },
+              { option:'Add writer to blacklist' }
+            ],
+          }
         ]
       },
       options: [
@@ -225,7 +227,7 @@ export default {
     }
   },
   mounted(){
-    this.getTableData()
+    // this.getTableData()
   },
   methods:{
     handleClick(tab, event) {
@@ -252,24 +254,30 @@ export default {
       this.pageNum = val;
       this.getTableData()
     },
-    getTableData(){
-      let vm = this
-      let params = {
-        userid:JSON.parse(localStorage.getItem('userInfo')).usersid,
-        pageNum:vm.pageNum,
-        pageSize:vm.pageSize
-      }
-      this.$axios.get('/order/userorder',{params:params}).then(res=>{
-        vm.loading=false
-        let data = res.data.data;
-        data.forEach(item=>{
-          item.more = vm.more
-        })
-        vm.setArr.aaData = data;
-        vm.setArr.total = res.data.total;
-      }).catch(err=>{
+    // getTableData(){
+    //   let vm = this
+    //   let params = {
+    //     userid:JSON.parse(localStorage.getItem('userInfo')).usersid,
+    //     pageNum:vm.pageNum,
+    //     pageSize:vm.pageSize
+    //   }
+    //   this.$axios.get('/order/userorder',{params:params}).then(res=>{
+    //     vm.loading=false
+    //     let data = res.data.data;
+    //     data.forEach(item=>{
+    //       item.more = vm.more
+    //     })
+    //     vm.setArr.aaData = data;
+    //     vm.setArr.total = res.data.total;
+    //   }).catch(err=>{
 
-      })
+    //   })
+    // }
+    filterOpen(flag){
+      this.filterFlag = flag;
+    },
+    setOpen(flag){
+      this.setFlag = flag;
     }
   },
   
@@ -282,8 +290,8 @@ export default {
       >span{ color: #999; }
     }
     .line_dropdown{ float: right; 
-      .dropdown_select{ border: 1px solid #92DDFC; height: 40px; line-height: 40px ; width: 100px; text-align: center; 
-        background:#E8F8FE; color: #333; border-radius: 4px;}
+      .dropdown_select{ border: 1px solid #DCDFE6; height: 40px; line-height: 40px ; width: 100px; text-align: center;color: #666; border-radius: 4px;font-weight: 700;transition: .3s}
+      .dropdown_select.active{color:#fff;background: #379FEE}
     }
     &::after{ content: ''; display: block; clear: both; }
   }
@@ -314,5 +322,8 @@ export default {
   .block_page{ text-align: center; margin: 16px 0 60px ;
       >.el-pagination{ padding: 0; }
     }
+</style>
+<style>
+
 </style>
 

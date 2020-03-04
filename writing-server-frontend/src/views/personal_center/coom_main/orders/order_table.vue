@@ -4,7 +4,6 @@
       <el-table
         :data="setArr.aaData"
         v-loading="loading"
-        border
         style="width: 100%">
          <el-table-column label="Topic" min-width="260px">
           <template slot-scope="scope">
@@ -24,7 +23,7 @@
           :key="index"
           :prop="ta.prop"
           :label="ta.name"
-          v-if="ta.checked && ta.prop != 'status' && ta.prop != 'price' "
+          v-if="ta.checked && ta.prop != 'statusType' && ta.prop != 'price' "
           min-width="160px">
         </el-table-column>
         <el-table-column
@@ -32,13 +31,13 @@
           :key="index"
           :prop="ta.prop"
           :label="ta.name"
-          v-if="ta.checked && ta.prop == 'status'"
+          v-if="ta.checked && ta.prop == 'statusType'"
           min-width="160px">
           <template slot-scope="scope">
-            <div class="status_info colorred" v-if="scope.row.status == 0">
+            <div class="status_info colorred" v-if="scope.row.statusType == 0">
               <span slot="reference">Waiting for payment</span>
             </div>
-            <div class="status_info colorgreen" v-else-if="scope.row.status == 1">
+            <div class="status_info colorgreen" v-else-if="scope.row.statusType == 1">
               <span slot="reference">Completed</span>
             </div>                                                                  
             <div class="status_info coloryellow" v-else>
@@ -54,9 +53,8 @@
           v-if="ta.checked && ta.prop == 'price'"
           min-width="160px">
           <template slot-scope="scope">
-            <div>
-              ${{scope.row.price}}<span style="color: #6DB33F;">(${{scope.row.bonus}} bonus)</span>
-            </div>
+              <!-- ${{scope.row.price}}<span style="color: #6DB33F;">(${{scope.row.bonus}} bonus)</span> -->
+              <span style="font-weight:bold;">{{scope.row.price}}</span><span style="color: #6DB33F;">{{scope.row.bonus}}</span>
           </template>
         </el-table-column>
         <el-table-column
@@ -64,7 +62,8 @@
           label="operation"
           width="150">
           <template slot-scope="scope">
-            <el-button @click="payingFn(scope.row)" v-show="scope.row.status == 0" type="primary" size="small">Pay</el-button>
+            <!-- <el-button @click="payingFn(scope.row)" v-show="scope.row.status == 0" type="primary" size="small">Pay</el-button> -->
+            <el-button @click="payingFn(scope.row)" type="primary" size="small">Pay</el-button>
             <el-popover
               placement="left-start"
               trigger="click">
@@ -113,7 +112,7 @@
       >.el-pagination{ padding: 0; }
     }
     .topic_info{ text-overflow: ellipsis; white-space: nowrap; overflow: hidden; color: #333333;
-      >span{  border-bottom: 1px solid; cursor: pointer; }
+      >span{  border-bottom: 1px solid; cursor: pointer; font-weight: bold}
       >span:hover{  color: #6db33f; border-bottom: 1px solid; }
     }
     .status_info{ border-radius: 13px; height: 26px; color: #333; text-align: center; line-height: 26px }

@@ -5,7 +5,7 @@
         :style="{transform: 'rotateZ(' + (!leftWidth ? '0' : '-90') + 'deg)'}"></i>
       <div class="right_nav">
         <span class="nav_list">
-          <i class="el-icon-user"></i>Welcome to your Control Panel, <span class="userName">{{user || ''}}</span> !
+          <i class="el-icon-user"></i>Welcome to your Control Panel, <span class="userName">{{user || 'Tom'}}</span> !
         </span>
         <span class="nav_list nav_listColor" @click="logOut"><i class="el-icon-right"></i>log out</span>
       </div>
@@ -47,7 +47,7 @@ export default {
     .right_nav{ float: right; font-size: 14px; color: #333;
       .nav_list{ margin-right: 35px; 
         >i{ width: 16px ; height: 16px; }
-        >.userName{ color: #6DB33F; }
+        >.userName{ color: #6DB33F; font-weight: bold}
       }
       .nav_listColor{ color: #A8BEC9; cursor: pointer; }
     }
